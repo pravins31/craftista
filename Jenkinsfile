@@ -19,7 +19,7 @@ pipeline{
         }
         stage('voting Test'){
             steps{
-                echo 'compling voting app'
+                echo 'Testing voting app'
                 
                 dir('voting'){
                     
@@ -31,7 +31,7 @@ pipeline{
         }
         stage('voting package'){
             steps{
-                echo 'compling voting app'
+                echo 'packaging voting app'
                 
                 dir('voting'){
                     
