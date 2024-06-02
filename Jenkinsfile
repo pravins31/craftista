@@ -11,7 +11,7 @@ pipeline{
                 
                 dir('voting'){
                     
-                    sh 'mvn comple'
+                    sh 'mvn compile'
                     
                 }
             }
