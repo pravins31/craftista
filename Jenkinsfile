@@ -17,5 +17,29 @@ pipeline{
             }
             
         }
+        stage('voting Test'){
+            steps{
+                echo 'compling voting app'
+                
+                dir('voting'){
+                    
+                    sh 'mvn test'
+                    
+                }
+            }
+            
+        }
+        stage('voting package'){
+            steps{
+                echo 'compling voting app'
+                
+                dir('voting'){
+                    
+                    sh 'mvn package -DskipTests'
+                    
+                }
+            }
+            
+        }
     }
 }
