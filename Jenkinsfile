@@ -23,7 +23,7 @@ pipeline{
                 
                 dir('voting'){
                     
-                    sh 'mvn test'
+                    sh 'mvn clean test'
                     
                 }
             }
