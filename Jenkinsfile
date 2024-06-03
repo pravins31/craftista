@@ -1,45 +1,39 @@
-pipeline{
-    agent any
-    tools{
-        maven '3.9.7'
-        
+pipeline {
+  agent any
+  stages {
+    stage('voting build') {
+      steps {
+        echo 'compling voting app'
+        dir(path: 'voting') {
+          sh 'mvn compile'
+        }
+
+      }
     }
-    stages{
-        stage('voting build'){
-            steps{
-                echo 'compling voting app'
-                
-                dir('voting'){
-                    
-                    sh 'mvn compile'
-                    
-                }
-            }
-            
+
+    stage('voting Test') {
+      steps {
+        echo 'Testing voting app'
+        dir(path: 'voting') {
+          sh 'mvn clean test'
         }
-        stage('voting Test'){
-            steps{
-                echo 'Testing voting app'
-                
-                dir('voting'){
-                    
-                    sh 'mvn clean test'
-                    
-                }
-            }
-            
-        }
-        stage('voting package'){
-            steps{
-                echo 'packaging voting app'
-                
-                dir('voting'){
-                    
-                    sh 'mvn package -DskipTests'
-                    
-                }
-            }
-            
-        }
+
+      }
     }
+
+    stage('voting package') {
+      steps {
+        echo 'packaging voting app'
+        dir(path: 'voting') {
+          sh 'mvn package -DskipTests'
+        }
+
+        archiveArtifacts '**/target/*.jar'
+      }
+    }
+
+  }
+  tools {
+    maven '3.9.7'
+  }
 }
